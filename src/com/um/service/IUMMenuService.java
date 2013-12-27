@@ -3,8 +3,8 @@ package com.um.service;
 import java.io.Serializable;
 import java.util.Collection;
 
-import com.common.easyui.DataGridDTO;
-import com.common.easyui.DataGridJsonDTO;
+import com.common.easyui.datagrid.DataGridDTO;
+import com.common.easyui.datagrid.DataGridJsonDTO;
 import com.google.gson.JsonArray;
 import com.um.domain.UMMenu;
 

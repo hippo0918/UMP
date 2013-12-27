@@ -8,9 +8,9 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.common.easyui.DataGridDTO;
-import com.common.easyui.DataGridDTOFactory;
-import com.common.easyui.DataGridJsonDTO;
+import com.common.easyui.datagrid.DataGridDTO;
+import com.common.easyui.datagrid.DataGridDTOFactory;
+import com.common.easyui.datagrid.DataGridJsonDTO;
 import com.google.gson.JsonArray;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;

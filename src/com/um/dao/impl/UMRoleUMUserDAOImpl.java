@@ -7,8 +7,8 @@ import org.hibernate.Query;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Repository;
 
-import com.common.easyui.DataGridDAOImpl;
-import com.common.easyui.IDataGridDAO;
+import com.common.easyui.datagrid.DataGridDAOImpl;
+import com.common.easyui.datagrid.IDataGridDAO;
 import com.um.dao.IUMRoleUMUserDAO;
 import com.um.domain.UMRole;
 import com.um.domain.UMRoleUMUser;

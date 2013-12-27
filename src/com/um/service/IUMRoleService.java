@@ -3,8 +3,8 @@ package com.um.service;
 import java.io.Serializable;
 import java.util.List;
 
-import com.common.easyui.DataGridDTO;
-import com.common.easyui.DataGridJsonDTO;
+import com.common.easyui.datagrid.DataGridDTO;
+import com.common.easyui.datagrid.DataGridJsonDTO;
 import com.um.domain.model.dto.UMRoleDTO;
 
 public interface IUMRoleService {

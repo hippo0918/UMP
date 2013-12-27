@@ -21,8 +21,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.common.easyui.DataGridDTO;
-import com.common.easyui.DataGridJsonDTO;
+import com.common.easyui.datagrid.DataGridDTO;
+import com.common.easyui.datagrid.DataGridJsonDTO;
 import com.um.dao.IUMMenuDAO;
 import com.um.dao.IUMMenuUMPermissionDAO;
 import com.um.dao.IUMPermissionDAO;
@@ -285,7 +285,6 @@ public class UMUserServiceImpl implements IUMUserService {
 		UMUserDTO _userDto = null;
 		if(StringUtils.isNotBlank(userno) && StringUtils.isNotBlank(password)) {
 			UMUser u = new UMUser();
-			u.setAdmin(userDto.getAdmin());
 			u.setUserno(userno);
 			//是否有该用户名的用户
 			List<UMUser> users = (List<UMUser>) user_dao.getBeansByBean(u, MatchMode.EXACT);
@@ -295,9 +294,13 @@ public class UMUserServiceImpl implements IUMUserService {
 			if(users != null && users.size() != 0) {
 				u = null;
 				for(UMUser _u : users) {
-					if(_u.getPassword().equals(MD5.getMD5Instace().getMD5ofStr(password))) {
-						u = _u;
-						break;
+					if(_u.getPassword().equals(MD5.getMD5Instace().getMD5ofStr(password))) {//密码正确
+						if(_u.getAdmin().equalsIgnoreCase(userDto.getAdmin())) {
+							u = _u;
+							break;
+						} else {
+							throw new UMUserException("用户角色选择错误！");
+						}
 					}
 				}
 				if(u != null) {

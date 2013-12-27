@@ -2,7 +2,7 @@ package com.um.dao.impl;
 
 import org.springframework.stereotype.Repository;
 
-import com.common.easyui.DataGridDAOImpl;
+import com.common.easyui.datagrid.DataGridDAOImpl;
 import com.um.dao.IUMUserUMMenuUMPermissionDAO;
 import com.um.domain.UMUserUMMenuUMPermission;
 

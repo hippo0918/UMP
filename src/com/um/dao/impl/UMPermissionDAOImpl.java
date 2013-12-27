@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.common.easyui.DataGridDAOImpl;
+import com.common.easyui.datagrid.DataGridDAOImpl;
 import com.um.dao.IUMPermissionDAO;
 import com.um.domain.UMPermission;
 

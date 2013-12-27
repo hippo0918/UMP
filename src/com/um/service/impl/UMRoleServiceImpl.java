@@ -20,8 +20,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.common.easyui.DataGridDTO;
-import com.common.easyui.DataGridJsonDTO;
+import com.common.easyui.datagrid.DataGridDTO;
+import com.common.easyui.datagrid.DataGridJsonDTO;
 import com.um.dao.IUMMenuUMPermissionDAO;
 import com.um.dao.IUMRoleDAO;
 import com.um.dao.IUMRoleUMMenuDAO;

@@ -2,7 +2,7 @@ package com.um.dao;
 
 import java.util.List;
 
-import com.common.easyui.IDataGridDAO;
+import com.common.easyui.datagrid.IDataGridDAO;
 import com.um.domain.UMPermission;
 
 public interface IUMPermissionDAO extends IDataGridDAO<UMPermission> {

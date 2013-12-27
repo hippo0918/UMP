@@ -1,4 +1,4 @@
-package com.common.easyui;
+package com.common.easyui.datagrid;
 
 public class DataGridConst {
 

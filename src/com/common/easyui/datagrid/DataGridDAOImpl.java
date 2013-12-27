@@ -1,4 +1,4 @@
-package com.common.easyui;
+package com.common.easyui.datagrid;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

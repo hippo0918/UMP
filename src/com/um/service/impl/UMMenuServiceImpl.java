@@ -19,8 +19,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.common.easyui.DataGridDTO;
-import com.common.easyui.DataGridJsonDTO;
+import com.common.easyui.datagrid.DataGridDTO;
+import com.common.easyui.datagrid.DataGridJsonDTO;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.um.dao.IUMMenuDAO;

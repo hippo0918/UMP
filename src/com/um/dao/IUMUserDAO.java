@@ -1,6 +1,6 @@
 package com.um.dao;
 
-import com.common.easyui.IDataGridDAO;
+import com.common.easyui.datagrid.IDataGridDAO;
 import com.um.domain.UMUser;
 
 public interface IUMUserDAO extends IDataGridDAO<UMUser> {

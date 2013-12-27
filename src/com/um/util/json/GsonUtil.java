@@ -2,7 +2,7 @@ package com.um.util.json;
 
 import java.util.Collection;
 
-import com.common.easyui.DataGridJsonDTO;
+import com.common.easyui.datagrid.DataGridJsonDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
