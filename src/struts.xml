@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 修改访问链接的后缀名 (.do)-->
+	<constant name="struts.action.extension" value="do"></constant>
+	<!-- 设置开发模式 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 设置标签ui主题 -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+
+	<package name="um" namespace="/um" extends="struts-default">
+		
+		<!-- 拦截器 -->
+		<interceptors>
+			<interceptor name="loginInterceptor" class="com.um.web.interceptor.LoginInterceptor"/>
+			<interceptor name="PriorityInterceptor" class="com.um.web.interceptor.PriorityInterceptor"/>
+			<interceptor-stack name="paramsLoginStack">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="PriorityInterceptor"/> 
+				<interceptor-ref name="params" />
+			</interceptor-stack>
+		</interceptors> 
+		<!-- 默认拦截器 -->
+		<default-interceptor-ref name="paramsLoginStack"></default-interceptor-ref>
+		<!-- 全局页面 -->
+		<global-results>
+			<result name="input">/error.jsp</result>
+			<result name="login">/login.jsp</result>
+			<result name="notPriority">/notPriority.jsp</result>
+		</global-results>
+		<!-- 角色 -->
+		<action name="umRoleAction_*" class="umRoleAction" method="{1}">
+			<result name="index">/WEB-INF/um/role/role_index.jsp</result>
+			<result name="view">/WEB-INF/um/role/role_view.jsp</result>
+			<result name="edit">/WEB-INF/um/role/role_edit.jsp</result>
+			<result name="doNotNeedSecurityMngVisableMenu">/WEB-INF/um/role/role_menu.jsp</result>
+			<result name="viewPermission">/WEB-INF/um/role/role_permission.jsp</result>
+			<!-- type="redirect"是用路径,这是为了防止重复提交，不过也可以使用struts提供的令牌机制
+			<result name="save" type="redirectAction">
+				<param name="namespace">/um</param>
+				<param name="actionName">umRoleAction_index</param>
+			</result>
+			 -->
+		</action>
+		
+		<!-- 员工 -->
+		<action name="umUserAction_*" class="umUserAction" method="{1}">
+			<result name="index">/WEB-INF/um/user/user_index.jsp</result>
+			<result name="edit">/WEB-INF/um/user/user_edit.jsp</result>
+			<result name="login">/login.jsp</result>
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<!-- 菜单-->
+		<action name="umMenuAction_*" class="umMenuAction" method="{1}">
+			<result name="index">/WEB-INF/um/menu/menu_index.jsp</result>
+			<result name="edit">/WEB-INF/um/menu/menu_edit.jsp</result>
+			<result name="permissionDispatch">/WEB-INF/um/menu/menu_permission.jsp</result>
+		</action>
+		
+		<!-- 权限-->
+		<action name="umPermissionAction_*" class="umPermissionAction" method="{1}">
+			<result name="index">/WEB-INF/um/permission/permission_index.jsp</result>
+			<result name="edit">/WEB-INF/um/permission/permission_edit.jsp</result>
+		</action>
+	</package>
+</struts>

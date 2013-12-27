@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"     
+    xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
+            http://www.springframework.org/schema/aop  
+            http://www.springframework.org/schema/aop/spring-aop-3.1.xsd  
+            http://www.springframework.org/schema/tx  
+            http://www.springframework.org/schema/tx/spring-tx-3.1.xsd  
+            http://www.springframework.org/schema/context  
+            http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	<!--1. 注解的自动扫描，表示组件的（@controler,@service） -->
+	<context:component-scan base-package="com.um"></context:component-scan>
+	<context:property-placeholder location="classpath:config.properties" />
+	<!-- 2.配置spring数据源 ? -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<!-- 数据库连接 -->
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	<!-- 3. 创建sessionFactory，由spring提供的sessionFactory -->
+	<bean id="sessionFactory" 
+	class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+	p:dataSource-ref="dataSource">
+		<!-- 3.1要把hibernate的配置文件加进来 -->
+		 <property name="hibernateProperties">
+		   <props>
+		    <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+		    <prop key="hibernate.show_sql">true</prop>
+		   <!--  <prop key="hibernate.hbm2ddl.auto">update</prop> -->
+		    <prop key="javax.persistence.validation.mode">none</prop>
+		   </props>
+		  </property>
+
+		<property name="mappingLocations"> 
+		    <value>classpath:/com/um/domain/*.hbm.xml</value> 
+		</property> 
+	</bean>
+	<!-- 连接点跟切入点关联,下面的都可以用注解来实现 -->
+	<!-- 4.创建事务管理器 ,由spring负责创建-->
+	<bean id="transactionManager"
+       class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+       p:sessionFactory-ref="sessionFactory" />
+	
+	<!-- 使用注解的形式管理事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

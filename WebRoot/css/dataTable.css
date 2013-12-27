@@ -1,0 +1,25 @@
+#stuTable {
+	border-collapse: collapse;
+}
+
+#stuTable td.dataTableHeader {
+	color: #fff;
+	background-color: #5CB0E5;
+	border: #fff 1px solid;
+}
+
+#stuTable td {
+	border-style: solid;
+	border-width: 1px 1px 0 1px;
+	border-color: #ccc #fff #ccc #fff;
+}
+
+
+#stuTable tr.odd_row {
+	background-color: #e4f2fb;
+}
+
+#stuTable tr.even_row {
+	background-color: #f8f8f8;
+}
+

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.um.domain.UMUser" table="um_user">
+        <comment>员工表</comment>
+        <id name="id" type="string">
+            <column name="id" length="36" />
+            <generator class="uuid" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="20" not-null="true">
+                <comment>员工名称</comment>
+            </column>
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="2" not-null="true">
+                <comment>员工性别</comment>
+            </column>
+        </property>
+         <property name="userno" type="string">
+            <column name="userno" length="50" not-null="true">
+                <comment>员工编号</comment>
+            </column>
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="36" not-null="true">
+                <comment>密码</comment>
+            </column>
+        </property>
+        <property name="validate" type="boolean">
+            <column name="validate" length="2" default="true">
+                <comment>是否合法</comment>
+            </column>
+        </property>
+        <property name="admin" type="string">
+            <column name="admin" length="3">
+                <comment>是否合法:{"YES","NO"}</comment>
+            </column>
+        </property>
+         <property name="createDate" type="java.util.Date">
+            <column name="createDate" length="50" not-null="true">
+                <comment>创建时间</comment>
+            </column>
+        </property>
+        <set name="umRoleumUser" inverse="true">
+            <key>
+                <column name="um_user_id" length="36" not-null="true">
+                    <comment>员工ID</comment>
+                </column>
+            </key>
+            <one-to-many class="com.um.domain.UMRoleUMUser" />
+        </set>
+    </class>
+    <!-- <query name="getRoles">
+    	SELECT new com.um.domain.model.dto.UMRoleDTO(r.id, r.name) FROM UMRole AS r, UMUser AS u,UMRoleUMUser AS ru WHERE r.id = ru.role.id AND ru.user.id = u.id AND r.validate = 1 AND u.id = ?
+    </query> -->
+    <!-- select new com.um.domain.UMUser(u.id, u.createDate, u.name, u.gender, u.userno, u.validate, u.password, u.admin) -->
+    <query name="queryUserByRoleIds">
+    	select new com.um.domain.UMUser(u.id, u.createDate, u.name, u.gender, u.userno, u.validate, u.password, u.admin)
+		from UMUser as u,UMRole as r,UMRoleUMUser as ru
+		where u.id = ru.user.id and r.id = ru.role.id and u.validate = 1
+		and r.id in (:ids)
+    </query>
+    <query name="queryUserByRoleIdsCount">
+    	select count(*)
+		from UMUser as u,UMRole as r,UMRoleUMUser as ru
+		where u.id = ru.user.id and r.id = ru.role.id and u.validate = 1
+		and r.id in (:ids)
+    </query>
+</hibernate-mapping>
+
