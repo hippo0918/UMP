@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class DataGridDTO {
 
-	private int page = DataGridConst.PAGE_NO;// 当前页
-	private int rows = DataGridConst.PAGE_SIZE;// 每页显示记录数
+	private int page = DataGridConstValues.PAGE_NO;// 当前页
+	private int rows = DataGridConstValues.PAGE_SIZE;// 每页显示记录数
 	private Map<String, String> order = new HashMap<String, String>();// 排序字段名
 	
 	public DataGridDTO(HttpServletRequest request) {

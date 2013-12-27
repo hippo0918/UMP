@@ -34,12 +34,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <body style="width: 100%;height: 100%;overflow: hidden;padding: 0;margin: 0;">
       <form id="form-body" style="display: none;">
             <ul>
-                <li><input id="user" class="form-radio-other-input" type="radio" name="admin" value="NO" checked="checked" style="vertical-align:bottom;"/>
+                <li><input id="user" class="form-radio-other-input" type="radio" name="admin" value="NO" style="vertical-align:bottom;"/>
                 <label for="user">普通用户 </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="admin" class="form-radio-other-input" type="radio" name="admin" value="YES" style="vertical-align:bottom;"/> 
+                <input id="admin" class="form-radio-other-input" type="radio" name="admin" value="YES" checked="checked"  style="vertical-align:bottom;"/> 
                 <label for="admin">初始化管理员</label></li>
-                <li><label>工	号 </label> <input class="easyui-validatebox account form-textbox" type="text" name="userno" required="required" /></li>
-                <li><label>密	码 </label> <input class="easyui-validatebox  password form-textbox" type="password" name="password" required="required"/></li>
+                <li><label>工	号 </label> <input class="easyui-validatebox account form-textbox" type="text" name="userno" required="required" value="YJT0015"/></li>
+                <li><label>密	码 </label> <input class="easyui-validatebox  password form-textbox" type="password" name="password" required="required" value="19901226"/></li>
             </ul>
      </form>
        <div id="logo"  style="display: none;">

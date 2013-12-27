@@ -80,20 +80,20 @@ public class BaseDAOImpl<T> implements IBaseDAO<T> {
 	protected T getBeanById(String beanName, Serializable id,
 			boolean lock) throws DaoException {
 
-		T bean = null;
+		Object bean = null;
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			if (lock) {
 				//SQLSERVER不能这样用
-				bean = (T) session.get(beanName, id,
+				bean = session.get(beanName, id,
 						LockOptions.UPGRADE);
 			} else {
-				bean = (T) session.get(beanName, id);
+				bean = session.get(beanName, id);
 			}
 		} catch (Exception ex) {
 			throw new DaoException("Get bean by id fail!" + ex.getMessage(), ex);
 		}
-		return bean;
+		return (T)bean;
 	}
 
 	/**
@@ -257,35 +257,6 @@ public class BaseDAOImpl<T> implements IBaseDAO<T> {
 					+ ex.getMessage());
 		}
 		return bean;
-	}
-
-	/**
-	 * 根据命名hql语句查询符合条件的object数组
-	 * 
-	 * @param hqlName
-	 * @param paraList
-	 * @return Object[]
-	 * @throws DaoException
-	 */
-	public T[] getObjectsByParams(String hqlName, ArrayList<String> paraList)
-			throws DaoException {
-		try {
-			Collection<T> collection = getBeansByParams(hqlName, paraList);
-			T[] ts = null;
-			if (collection != null) {
-				Iterator<T> i = collection.iterator();
-				for(int j=0; i.hasNext(); j++) {
-					collection.toArray(ts);
-				}
-			}
-
-		} catch (Exception ex) {
-			throw new DaoException(
-					"Get the first match object array by hqlName fail!"
-							+ ex.getMessage());
-		}
-
-		return null;
 	}
 
 	/**
@@ -551,16 +522,16 @@ public class BaseDAOImpl<T> implements IBaseDAO<T> {
 	 * @param table
 	 * @throws DaoException
 	 */
-	public int executeUpdateHql(String hqlName, Hashtable<Object, Object> table)
+	public int executeUpdateHql(String hqlName, Map<String, Object> map)
 			throws DaoException {
 		try {
 			Query q = sessionFactory.getCurrentSession().getNamedQuery(hqlName);
 
-			if (table != null) {
-				Iterator<Object> it = table.keySet().iterator();
+			if (map != null) {
+				Iterator<String> it = map.keySet().iterator();
 				while (it.hasNext()) {
 					String paramName = it.next().toString();
-					Object paramValue = table.get(paramName);
+					Object paramValue = map.get(paramName);
 					if (paramValue instanceof Object[])
 						q.setParameterList(paramName, (Object[]) paramValue);
 					else if (paramValue instanceof Collection)
@@ -581,15 +552,15 @@ public class BaseDAOImpl<T> implements IBaseDAO<T> {
 	 * @param filterName,table
 	 * @throws DaoException
 	 */
-	public void enableFilter(String filterName, Hashtable<Object, Object> table)
+	public void enableFilter(String filterName, Map<String, Object> map)
 			throws DaoException {
 		try {
 			Filter filter = sessionFactory.getCurrentSession().enableFilter(filterName);
-			if (table != null) {
-				Iterator it = table.keySet().iterator();
+			if (map != null) {
+				Iterator<String> it = map.keySet().iterator();
 				while (it.hasNext()) {
 					String paramName = it.next().toString();
-					Object paramValue = table.get(paramName);
+					Object paramValue = map.get(paramName);
 					if (paramValue instanceof Object[])
 						filter.setParameterList(paramName,
 								(Object[]) paramValue);
@@ -977,5 +948,66 @@ public class BaseDAOImpl<T> implements IBaseDAO<T> {
 		}
 		return totalCount;
 	}
+
+	@Override
+	public Collection<T> getBeansByParams(String hqlName,
+			Map<String, Object> paraMap) throws DaoException {
+		Collection<T> collection = null;
+		try {
+			Query q = sessionFactory.getCurrentSession().getNamedQuery(hqlName);
+			setParameter(q, paraMap);
+			collection = q.list();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			throw new DaoException("Get match records by hqlName fail!"
+					+ ex.getMessage());
+		}
+		return collection;
+	}
+
+	@Override
+	public Object[] getObjectsByParams(String hqlName,
+			Map<String, Object> paraMap) throws DaoException {
+		Object[] ts = null;
+		try {
+			Collection<T> collection = getBeansByParams(hqlName, paraMap);
+			if (collection != null) {
+				collection.toArray();
+			}
+
+		} catch (Exception ex) {
+			throw new DaoException(
+					"Get the first match object array by hqlName fail!"
+							+ ex.getMessage());
+		}
+		return null;
+	}
 	
+	/**
+	 * Object[] objects = user_dao.getObjectsByParams("testGetObjectsByParams", userId);
+	 * 1.testGetObjectsByParams = from UMUser as u,UMRole as r,UMRoleUMUser as ru
+		where u.id = ru.user.id and r.id = ru.role.id and u.validate = 1
+		and u.id = ?
+		这个方法将会返回的是一行数据返回的是三个对象:
+		UMUser u = (UMUser)objects[0][1];
+		UMRole r = (UMRole)objects[0][2];
+		UMRoleUMUser r = (UMRoleUMUser)objects[0][3];
+	 * 
+	 * */
+	public Object[] getObjectsByParams(String hqlName, ArrayList<String> paraList)
+			throws DaoException {
+		try {
+			Collection<T> collection = getBeansByParams(hqlName, paraList);
+			if (collection != null) {
+				return collection.toArray();
+			}
+
+		} catch (Exception ex) {
+			throw new DaoException(
+					"Get the first match object array by hqlName fail!"
+							+ ex.getMessage());
+		}
+
+		return null;
+	}
 }

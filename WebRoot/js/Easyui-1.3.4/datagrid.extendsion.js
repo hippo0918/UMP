@@ -67,12 +67,33 @@ $.extend($.fn.datagrid.methods, {
 		function bindEvent(jqs) {
 			jqs.mouseover(function () {
 				var content = $(this).text();
+				var width = 105;
+				if(content.length < 10) {
+					width = 90;
+				} else if (content.length > 10 && content.length < 30) {
+					width = width * 1.5;
+				} else if(content.length > 30 && content.length < 100) {
+					width = width * 2;
+				} else {
+					width = width * 3;
+				}
 				$(this).tooltip({
 					content : content,
 					trackMouse : true,
 					//deltaX:parseInt($(this).width)/2,
 					onHide : function () {
 						$(this).tooltip('destroy');
+					},
+					onShow : function() {
+						$(this).tooltip('tip').css({
+							color : '#696969',
+							backgroundColor : '#F5F5F5',
+							//borderColor : '#666'
+							wordWrap: "break-word", 
+							wordBreak: "normal",
+							width:width,
+							textAlign:"center"
+						});
 					}
 				}).tooltip('show');
 			});

@@ -19,4 +19,5 @@ public class DataGridDTOFactory {
 	public DataGridDTO getDataGridDTO(HttpServletRequest request) {
 		return new DataGridDTO(request);
 	}
+
 }

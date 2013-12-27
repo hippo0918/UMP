@@ -142,6 +142,7 @@ $(function() {
 					});
 				};
 				$(".easyui-linkbutton").linkbutton();
+				datagrid.datagrid('tooltip',["description"]);
 			}
 		});
 		$("#btn_search").bind('click', function() {

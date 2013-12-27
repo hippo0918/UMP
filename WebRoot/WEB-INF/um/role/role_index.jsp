@@ -27,6 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.easyui.min.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/Easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/Easyui-1.3.4/datagrid.extendsion.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/um/um_role/role_index.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/util.js" ></script>
 	<body style="width:100%;height:100%;">

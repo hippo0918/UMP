@@ -43,6 +43,26 @@ public class GsonUtil {
 	}
 	
 	/**  
+	* @Name: parseJsonArray
+	* @Description: 集合转化为JsonArray
+	* @Author: 李泽彬（作者）
+	* @Version: V1.00 （版本号）
+	* @Create Date: 2013-07-05 （创建日期）
+	* @Parameters: 无
+	* @Return: JsonArray
+	*/
+	public static JsonArray parseJsonArray(Object[] array) {
+		String r = gson.toJson(array);
+        JsonParser parser = new JsonParser();
+		JsonElement el = parser.parse(r);
+		JsonArray jsonArray = null;
+		if(el.isJsonArray()){
+			jsonArray = el.getAsJsonArray();
+		}	
+		return jsonArray;
+	}
+	
+	/**  
 	* @Name: parseJsonObject
 	* @Description: 实体对象转化为JsonArray
 	* @Author: 李泽彬（作者）

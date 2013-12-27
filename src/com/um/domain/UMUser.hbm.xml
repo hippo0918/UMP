@@ -68,5 +68,9 @@
 		where u.id = ru.user.id and r.id = ru.role.id and u.validate = 1
 		and r.id in (:ids)
     </query>
+    <query name="testGetObjectsByParams">
+    	from UMUser as u,UMRole as r,UMRoleUMUser as ru
+		where u.id = ru.user.id and r.id = ru.role.id and u.validate = 1
+    </query>
 </hibernate-mapping>
 

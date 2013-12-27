@@ -19,7 +19,11 @@ public interface IBaseDAO<T> {
 	
 	public Collection<T> getBeansByParams(String hqlName, ArrayList<String> paraList) throws DaoException;
 	
+	public Collection<T> getBeansByParams(String hqlName, Map<String, Object> paraMap) throws DaoException;
+	
 	public Object[] getObjectsByParams(String hqlName, ArrayList<String> paraList) throws DaoException;
+	
+	public Object[] getObjectsByParams(String hqlName, Map<String, Object> paraMap) throws DaoException;
 	
 	public Object getObjectByParams(String hqlName, ArrayList<String> paraList) throws DaoException;
 	
@@ -43,9 +47,9 @@ public interface IBaseDAO<T> {
 	
 	public int executeUpdateHql(String hqlName,ArrayList<String> paraList) throws DaoException;
 	
-	public int executeUpdateHql(String hqlName,Hashtable<Object, Object> table) throws DaoException;
+	public int executeUpdateHql(String hqlName,Map<String, Object> map) throws DaoException;
 	
-	public void enableFilter(String filterName,Hashtable<Object, Object> table) throws DaoException;
+	public void enableFilter(String filterName,Map<String, Object> map) throws DaoException;
 	
 	public void disableFilter(String filterName) throws DaoException;
 	
