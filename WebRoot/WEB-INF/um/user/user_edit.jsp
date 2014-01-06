@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</td> 
 			<td align="left" colspan="2">
 				<input style="width: 130px" id="txt_userno" name="userno" class="easyui-validatebox" value="<s:property value="%{userno}"/>" readonly="readonly"></input>
-				<font style="color: red">(系统默认)</fort>
+				<font style="color: red">(系统默认)</font>
 			</td>
 		</tr>
 		<tr id="tr_name" class="input">
@@ -86,7 +86,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<font style="font-size: 14px">员工姓名:</font>
 			</td>
 			<td align="left" colspan="2">
-				<input style="width: 130px" id="txt_name" name="name" class="easyui-validatebox" value="<s:property value="%{name}" />">(必填)
+				<input style="width: 130px" id="txt_name" name="name" class="easyui-validatebox" value="<s:property value="%{name}" />">
+				<font style="color: red">*</font>
 			</td>
 		</tr>
 		<tr id="tr_password">
@@ -94,7 +95,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<td align="left"><input readonly="readonly" id="txt_password"
 				name="password" class="easyui-validatebox"
 				data-options="validType:'minLength[6]',invalidMessage:'密码要6位以上'"
-				type="password"></input>
+				type="password"/>
+			<font style="color: red">*</font>
 			<a href="javascript:void(0)" id="btn_edit_password" style="text-decoration: none;">修改</a>
 			</td>
 		</tr>
@@ -103,7 +105,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<td align="left"><input id="txt_passwordAgain" name="passwordAgain"
 				id="txt_passwordAgain" class="easyui-validatebox"
 				data-options="validType:'minLength[6]',invalidMessage:'密码要6位以上'"
-				type="password"></input></td>
+				type="password"></input>
+			<font style="color: red">*</font>
+			</td>
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
@@ -119,7 +123,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<td align="center" style="letter-spacing: 5px;font-size: 14px">所属角色:</td>
 			<td colspan="2"> 
 			<select style="width: 130px" class="easyui-combobox" name="roles_id" id="roles_id" >
-			</select></td>
+			</select><font style="color: red">*</font>
+			</td>
 		</tr>
 		</table>
 	</form>

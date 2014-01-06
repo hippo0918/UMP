@@ -7,6 +7,7 @@ $.ajaxSetup({
 	cache: false, //close AJAX cache
 	contentType:"application/x-www-form-urlencoded;charset=utf-8", 
 	complete:function(XHR,textStatus){  
+		console.info("status = " + textStatus);
 		jq.hideLoading();
         var resText = XHR.responseText;
         //登录超时
@@ -16,8 +17,8 @@ $.ajaxSetup({
         //没有权限
         else if(resText=='notPriority'){   
         	notPriority();
-        }        
-    } 
+        };   
+    }
 });
 jq.ajaxSetup({
 	cache: false, //close AJAX cache

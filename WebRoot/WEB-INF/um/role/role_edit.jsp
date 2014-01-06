@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<font style="font-size: 14px">角 色 名 称:</font>
 			</td> 
 			<td align="left" colspan="2">
-				<input style="width: 130px" id="txt_name" name="name" class="easyui-validatebox" value="<s:property value="%{name}"/>" ></input>(必填)
+				<input style="width: 130px" id="txt_name" name="name" class="easyui-validatebox" value="<s:property value="%{name}"/>" ></input><font style="color: red">*</font>
 			</td>
 		</tr>
 		<tr id="tr_description" class="input">
@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</td>
 			<td align="left" colspan="2">
 			<!-- 不能换行，换行会有空格  -->
-				<textarea rows="4" cols="25" id="txt_description" name="description" ><s:property value="%{description}" /></textarea>(必填)
+				<textarea rows="4" cols="25" id="txt_description" name="description" ><s:property value="%{description}" /></textarea><font style="color: red">*</font>
 			</td>
 		</tr>
 		<tr>

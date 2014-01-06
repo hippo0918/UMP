@@ -225,7 +225,6 @@ public class BaseDAOImpl<T> implements IBaseDAO<T> {
 				q.setParameter(i, paraList.get(i));
 			collection = q.list();
 		} catch (Exception ex) {
-			ex.printStackTrace();
 			throw new DaoException("Get match records by hqlName fail!"
 					+ ex.getMessage());
 		}
@@ -903,6 +902,9 @@ public class BaseDAOImpl<T> implements IBaseDAO<T> {
 		}
 	}
 	
+	/**
+	 * 用于Map类型传参
+	 * */
 	protected Query setParameter(Query query, Map<String, Object> map) {  
         if (map != null) {  
             Set<String> keySet = map.keySet();  
@@ -1001,7 +1003,6 @@ public class BaseDAOImpl<T> implements IBaseDAO<T> {
 			if (collection != null) {
 				return collection.toArray();
 			}
-
 		} catch (Exception ex) {
 			throw new DaoException(
 					"Get the first match object array by hqlName fail!"

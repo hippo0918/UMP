@@ -1,8 +1,6 @@
 var iframe = $("<iframe width=\"100%\" height=\"100%\" name='iframe' id=\"iframe\" frameborder=\"0\"/>");
 var window = $("#user_edit");
 var datagrid = null;
-//ajax传数组使用传统模式
-jQuery.ajaxSettings.traditional = true;
 function openDialog(operation) {
 	var jsp = "";
 	var title = "";
@@ -139,7 +137,11 @@ function formSubmit() {
 					iframe.contents().find("#txt_name").val("");
 					return false;
 				}
-				
+//				var roles_id = iframe.contents().find("#roles_id").combobox("getValues");
+//				if(!roles_id || roles_id.length == 0) {
+//					jq.messager.alert("警告", '请选择角色', 'waring');
+//					return false;
+//				}
 				if(iframe.contents().find("#tr_passwordAgain").css('display') == "table-row" || iframe.contents().find("#tr_passwordAgain").css('display') == "block") {
 					if(iframe.contents().find("#txt_passwordAgain").val().length < 6 || iframe.contents().find("#txt_password").val().length < 6) {
 						jq.messager.alert("警告", '密码至少要6位', 'waring');

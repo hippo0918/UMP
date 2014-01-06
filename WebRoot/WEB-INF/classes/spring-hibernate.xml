@@ -24,7 +24,21 @@
 		<property name="jdbcUrl" value="${jdbc.url}" />
 		<property name="user" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
+		<!-- 最大连接数 -->
+		<property name="maxPoolSize" value="50"></property>
+		<!-- 最小连接数 -->
+		<property name="minPoolSize" value="5"></property>
+		<!-- 获得连接的超时时间,如果超过这个时间,会抛出异常，单位毫秒 -->
+		<property name="checkoutTimeout" value="2000"></property>
+		<!-- 最大的PreparedStatement的数量 -->
+		<property name="maxStatements" value="100"></property>
+		<!-- 每隔120秒检查连接池里的空闲连接 ，单位是秒-->
+		<property name="idleConnectionTestPeriod" value="120"></property>
+		<!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->
+		<property name="acquireIncrement" value="2"></property>
+		
 	</bean>
+	
 	<!-- 3. 创建sessionFactory，由spring提供的sessionFactory -->
 	<bean id="sessionFactory" 
 	class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
@@ -41,7 +55,7 @@
 
 		<property name="mappingLocations"> 
 		    <value>classpath:/com/um/domain/*.hbm.xml</value> 
-		</property> 
+		</property>
 	</bean>
 	<!-- 连接点跟切入点关联,下面的都可以用注解来实现 -->
 	<!-- 4.创建事务管理器 ,由spring负责创建-->
@@ -51,5 +65,5 @@
 	
 	<!-- 使用注解的形式管理事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-
+	
 </beans>

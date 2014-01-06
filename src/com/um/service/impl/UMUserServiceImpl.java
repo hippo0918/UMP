@@ -296,9 +296,6 @@ public class UMUserServiceImpl implements IUMUserService {
 				for(UMUser _u : users) {
 					if(_u.getPassword().equals(MD5.getMD5Instace().getMD5ofStr(password))) {//密码正确
 						if(_u.getAdmin().equalsIgnoreCase(userDto.getAdmin())) {
-							ArrayList<String> userId = new ArrayList<String>();
-							//userId.add(_u.getId());
-Object[] objects = user_dao.getObjectsByParams("testGetObjectsByParams1", userId);
 							u = _u;
 							break;
 						} else {
