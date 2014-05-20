@@ -7,7 +7,7 @@
     <param-name>webAppRootKey</param-name>
     <param-value>UMP</param-value>
   </context-param>
-  <!-- openSessionInView配置 -->
+  <!-- openSessionInView配置 一定放在第一位 -->
 	<filter>
 		<filter-name>openSessionInViewFilter</filter-name>
 		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
@@ -43,7 +43,7 @@
       <filter-name>springSecurityFilterChain</filter-name>
       <url-pattern>/*</url-pattern>
     </filter-mapping> -->
-    <!-- 编码过滤 -->
+    <!-- 编码过滤,这个要放在其他过滤器的前面 -->
     <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>

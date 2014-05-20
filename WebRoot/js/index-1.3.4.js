@@ -18,8 +18,8 @@ window.onload = function() {
 };
 $(function() {
 	$(window).resizeWindow(function() {
-		if(!loadedWindow) {
-			jq.hideLoading();
+		while(!loadedWindow) {
+			//jq.hideLoading();
 			jq.showLoading();
 		}
 	});
@@ -102,6 +102,7 @@ $(function() {
 			}
 		}
 	});
+	
 	//初始化退出链接
 	$("#logout").on('click', function() {
 		$.messager.confirm('确认框', '确定要退出系统吗?', function(r){

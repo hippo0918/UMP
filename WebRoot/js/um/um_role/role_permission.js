@@ -69,7 +69,6 @@ $(function() {
 			}
 		});
 	};
-	
 	var permissionTable = $("#permission").datagrid({
 		url : 'um/umRoleAction_doNotNeedSecurityGetpermissionsByMenuId.do',
 		fitColumns : true,

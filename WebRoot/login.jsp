@@ -6,6 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+<jsp:include page="init.jsp"></jsp:include>
   <head>
     <base href="<%=basePath%>">
     
@@ -16,16 +17,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/login.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/Easyui-1.3.4/themes/bootstrap/easyui.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/Easyui-1.3.4/themes/icon.css" />
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/json2.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/Easyui-1.3.4/locale/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/Easyui-1.3.4/easyui-loading.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/Easyui-1.3.4/tree.extendsion.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/Easyui-1.3.4/window.extendsion.js" ></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/util.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/login.js" ></script> 
 
   </head>
